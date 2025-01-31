@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
+/* eslint-disable react/forbid-prop-types */
 
 export const pageQuery = graphql`
   query ($slug: String!) {

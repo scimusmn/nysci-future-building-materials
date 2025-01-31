@@ -2,17 +2,25 @@
 
 /* This CSS file represents an example assuming two languages (en and ar) are available. */
 
-/* Edit to match the design and locales of your project. */
+:root {
+  --color-primary: #015c55;
+  --color-secondary: #ccd9d6;
+  --color-overlay-text-btn: #211748;
+
+  /* HD resolution */
+
+  --height: 2160px;
+  --width: 3840px;
+  --overlay-btn-font-size: 32px;
+}
 
 html,
 body {
   background-color: #666;
   color: #fff;
-  font-family: "Open Sans", sans-serif;
-  height: 1080px;
+  font-family: Barlow, sans-serif;
   margin: 0;
   padding: 0;
-  width: 1920px;
 }
 
 h2 {

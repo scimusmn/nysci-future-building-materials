@@ -236,6 +236,8 @@ function Flipbook({ data, pageContext, location }) {
   );
 }
 
+/* eslint-disable react/forbid-prop-types */
+
 Flipbook.propTypes = {
   data: PropTypes.objectOf(PropTypes.object).isRequired,
   pageContext: PropTypes.objectOf(PropTypes.any).isRequired,
