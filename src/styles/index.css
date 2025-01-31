@@ -126,7 +126,7 @@ p {
 }
 
 .swiper-slide {
-  background: linear-gradient(180deg, #3c3b3c 0%, #252525 100%);
+  background: var(--color-primary);
   height: 100%;
   overflow: hidden;
   position: relative;
