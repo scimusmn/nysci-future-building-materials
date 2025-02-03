@@ -107,7 +107,6 @@ function Flipbook({ data, pageContext, location }) {
 
   // Filter out current locale
   const buttonLocales = localesInfo.filter((locale) => !pageContext.locales.includes(locale.code));
-  const intlNames = new Intl.DisplayNames('en', { type: 'language', languageDisplay: 'dialect' });
 
   // To sync slide index between locales
   const [currentSlide, setCurrentSlide] = useState(null);
@@ -148,15 +147,13 @@ function Flipbook({ data, pageContext, location }) {
   };
 
   const renderLocaleButtons = () => (
-    <div className="locale-buttons">
+    <div className="locale-toggle-button">
       { buttonLocales && buttonLocales.map((localeInfo) => (
         <Link
           key={localeInfo.code}
           to={`/${localeInfo.code}/${pageContext.slug}?currentSlide=${currentSlide}`}
-          className={`locale-button ${localeInfo.code}`}
-        >
-          {intlNames.of(localeInfo.code)}
-        </Link>
+          className={`locale-toggle-button ${localeInfo.code}`}
+        />
       ))}
     </div>
   );
