@@ -163,7 +163,6 @@ function Flipbook({ data, pageContext, location }) {
 
   const renderTitleSlide = (slide) => (
     <SwiperSlide key={slide[0].id} className="title-slide">
-      <div className="separator" />
       {slide.map((locale) => (
         <h1 className={locale.node_locale} key={locale.node_locale}>{locale.title}</h1>
       ))}
@@ -177,34 +176,39 @@ function Flipbook({ data, pageContext, location }) {
     return (
       <SwiperSlide key={slide[0].id}>
         {({ isActive }) => (
-          <div>
-            {/* Title and body for each locale */}
-            {slide.map((locale) => (
-              <div className={`${locale.node_locale} text-container`} key={locale.node_locale}>
-                <h2>{(locale.title && locale.title) || null}</h2>
-                <div className="separator" />
-                <div className="body">
-                  {(locale.body && renderRichText(locale.body)) || null}
-                </div>
-              </div>
-            ))}
+          <div className="slide-wrapper">
             {/* Media */}
             {(slide[0].media && slide[0].media.media) && (
-              <div className="media">
+              <div>
                 {
                 (slide[0].media.media.file.contentType).includes('video')
-                  ? <Video src={slide[0].media.media.localFile.publicURL} active={isActive} />
+                  ? <Video id="media" src={slide[0].media.media.localFile.publicURL} active={isActive} />
                   : (
                     <GatsbyImage
+                      id="media"
                       image={getImage(slide[0].media.media.localFile)}
                       alt={getAltText(slide[0].media.altText)}
                       loading="eager"
                     />
                   )
                 }
-                <span className="credit">{slide[0].media.credit}</span>
               </div>
             )}
+            {/* Title and body for each locale */}
+            <div className="content-wrapper">
+              {slide.map((locale) => (
+                <div className={`${locale.node_locale} text-container`} key={locale.node_locale}>
+                  <h2>{(locale.title && locale.title) || null}</h2>
+                  <div className="separator" />
+                  <div className="body">
+                    {(locale.body && renderRichText(locale.body)) || null}
+                  </div>
+                </div>
+              ))}
+              <div className="credit">
+                <p>{slide[0].media.credit}</p>
+              </div>
+            </div>
           </div>
         )}
       </SwiperSlide>
