@@ -38,6 +38,7 @@ body {
 .content-wrapper {
   display: flex;
   flex-direction: column;
+  height: 1080px;
   justify-content: space-between;
 }
 
@@ -90,6 +91,11 @@ body {
 }
 
 .gatsby-image-wrapper img {
+  width: 776px;
+}
+
+#media-video {
+  opacity: 1;
   width: 776px;
 }
 

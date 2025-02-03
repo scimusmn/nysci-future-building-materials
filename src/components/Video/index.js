@@ -15,7 +15,9 @@ function Video({ src, active }) {
 
   return (
     <video
+      id="media-video"
       loop
+      autoPlay
       preload="auto"
       ref={vidRef}
     >
