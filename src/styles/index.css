@@ -146,31 +146,42 @@ body {
 }
 
 /* Language toggles */
-
-.locale-buttons {
-  bottom: 2%;
-  position: fixed;
-  right: 0%;
-  z-index: 9;
+.locale-toggle-button {
+  align-items: center;
+  background-color: var(--color-secondary, 80%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 80% 80%;
+  border: none;
+  border-top-left-radius: 15px;
+  bottom: 0;
+  box-shadow: -2px 0 5px rgb(0 0 0 / 50%);
+  color: var(--color-secondary);
+  cursor: pointer;
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  opacity: 0.85;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  transform-origin: bottom right;
+  width: 100px;
+  z-index: 550;
 }
 
-.locale-button {
-  background-color: #9a9393;
-  border-radius: 5px;
-  color: white;
-  font-size: 21px !important;
-  margin: 15px;
-  margin-left: 0;
-  padding: 5px;
-  padding-left: 25px;
-  padding-right: 25px;
-  text-decoration: none;
+/** switch from one language to the next language image */
+.locale-toggle-button.es {
+  background-image: url("../images/default-eng-button.png");
 }
 
-.locale-button.es::after {
-  content: " 🇰🇼";
+.locale-toggle-button.en-US {
+  background-image: url("../images/default-es-button.png");
 }
 
-.locale-button.en-US::after {
-  content: " 🇺🇸";
+.locale-toggle-button:active {
+  background-image: url("../images/active-language-button.png");
+  transform: translate(0) scale(0.95);
+  transform-origin: bottom right;
+  transition: transform 0.2s ease-out;
 }
