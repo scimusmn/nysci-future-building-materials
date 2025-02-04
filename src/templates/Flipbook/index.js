@@ -8,6 +8,7 @@ import SwiperCore, { Pagination, Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useIdleTimer } from 'react-idle-timer';
 import Video from '../../components/Video';
+import AttractScreen from '../../components/AttractScreen';
 
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
@@ -158,11 +159,25 @@ function Flipbook({ data, pageContext, location }) {
     </div>
   );
 
+  const titleSlideDefaultData = {
+    attractTitle: 'Title in English',
+    attractSwipeText: 'Swipe up to start',
+    attractVideoClip: '//videos.ctfassets.net/bppzr40ti9rt/60CH9PKdTpbCoZseUJkvuk/fc7957483351c4d2dd1e35b70203cf95/rosie-stretch.mp4',
+  };
+
+  const titleSlideNonDefaultData = {
+    attractTitle: 'Title in English',
+    attractSwipeText: 'Swipe up to start',
+    attractVideoClip: '//videos.ctfassets.net/bppzr40ti9rt/60CH9PKdTpbCoZseUJkvuk/fc7957483351c4d2dd1e35b70203cf95/rosie-stretch.mp4',
+  };
+
   const renderTitleSlide = (slide) => (
     <SwiperSlide key={slide[0].id} className="title-slide">
-      {slide.map((locale) => (
-        <h1 className={locale.node_locale} key={locale.node_locale}>{locale.title}</h1>
-      ))}
+      <AttractScreen
+        defaultContent={titleSlideDefaultData}
+        nonDefaultContent={titleSlideNonDefaultData}
+        // isActive={isAttractScreenActive}
+      />
     </SwiperSlide>
   );
 
