@@ -158,6 +158,7 @@ function Flipbook({ data, pageContext, location }) {
 
   const onSlideChange = (swiper) => {
     const { realIndex } = swiper;
+    console.log('realIndex: ', realIndex);
     setUrlParam('currentSlide', realIndex);
     setCurrentSlide(realIndex);
   };

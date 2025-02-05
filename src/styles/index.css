@@ -57,6 +57,11 @@ body {
   width: 100%;
 }
 
+.attract-title {
+  padding: 0 100px;
+  text-align: center;
+}
+
 .attract-section-1 {
   align-items: center;
   background-color: var(--color-primary);
@@ -66,7 +71,7 @@ body {
   font-weight: bold;
   grid-row: 2/3;
   height: 200px;
-  justify-content: space-evenly;
+  justify-content: space-between;
   text-transform: lowercase;
 }
 

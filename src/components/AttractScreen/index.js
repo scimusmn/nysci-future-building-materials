@@ -30,8 +30,8 @@ function AttractScreen({
           <source src={videoClipSrc} type="video/mp4" />
         </video>
       <div className="attract-section-1">
-        <div>{defaultTitle}</div>
-        <div>{nonDefaultTitle}</div>
+        <div className="attract-title">{defaultTitle}</div>
+        <div className="attract-title">{nonDefaultTitle}</div>
       </div>
         <div className="attract-section-2">
           <div
