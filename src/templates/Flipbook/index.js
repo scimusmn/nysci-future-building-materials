@@ -180,7 +180,6 @@ function Flipbook({ data, pageContext, location }) {
       <AttractScreen
         defaultContent={titleSlideDefaultContent}
         nonDefaultContent={titleSlideNonDefaultContent}
-        // isActive={isAttractScreenActive}
       />
     </SwiperSlide>
   );
@@ -221,8 +220,13 @@ function Flipbook({ data, pageContext, location }) {
                   </div>
                 </div>
               ))}
-              <div className="credit">
-                <p>{slide[0].media.credit}</p>
+              <div className="slide-footer">
+                <div className="credit">
+                  <p>{slide[0].media.credit}</p>
+                </div>
+                <div className="locale-button-container">
+                  {renderLocaleButtons()}
+                </div>
               </div>
             </div>
           </div>
@@ -230,8 +234,8 @@ function Flipbook({ data, pageContext, location }) {
       </SwiperSlide>
     );
   });
-
   return (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {currentSlide !== null
       && (
@@ -251,7 +255,6 @@ function Flipbook({ data, pageContext, location }) {
         {renderSlides}
       </Swiper>
       )}
-      {renderLocaleButtons()}
     </>
   );
 }

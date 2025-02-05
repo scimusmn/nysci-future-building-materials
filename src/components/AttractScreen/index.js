@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 function AttractScreen({
   defaultContent,
   nonDefaultContent,
-  // isActive,
 }) {
   const defaultTitle = defaultContent.attractTitle;
   const defaultText = defaultContent.attractSwipeText;
@@ -51,7 +50,6 @@ function AttractScreen({
 }
 
 AttractScreen.propTypes = {
-//   isActive: PropTypes.bool.isRequired
   defaultContent: PropTypes.shape({
     attractTitle: PropTypes.string.isRequired,
     attractSwipeText: PropTypes.string.isRequired,
