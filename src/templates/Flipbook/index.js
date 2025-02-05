@@ -21,7 +21,6 @@ export const slideTypes = graphql`
       __typename
       node_locale
       id
-      title
     }
     ... on ContentfulSlide {
       __typename
@@ -99,6 +98,22 @@ function Flipbook({ data, pageContext, location }) {
 
   const localeNodes = data.allContentfulFlipbook.edges.map((edge) => edge.node);
 
+  const { titleSlideContent } = pageContext;
+  const titleSlideDefaultData = titleSlideContent.filter((slide) => slide.node_locale === 'en-US');
+  const titleSlideNonDefaultData = titleSlideContent.filter((slide) => slide.node_locale === 'es');
+
+  const titleSlideDefaultContent = {
+    attractTitle: titleSlideDefaultData[0].mainTitle,
+    attractSwipeText: titleSlideDefaultData[0].instructionText,
+    attractVideoClip: titleSlideDefaultData[0].titleSlideVideo.videoAsset.localFile.publicURL,
+  };
+
+  const titleSlideNonDefaultContent = {
+    attractTitle: titleSlideNonDefaultData[0].mainTitle,
+    attractSwipeText: titleSlideNonDefaultData[0].instructionText,
+    attractVideoClip: titleSlideNonDefaultData[0].titleSlideVideo.videoAsset.localFile.publicURL,
+  };
+
   // Array of multi-locale slides
   const slides = localeNodes[0].slides.map((slide, i) => localeNodes.map((node) => node.slides[i]));
   const localesInfo = data.allContentfulLocale.edges.map((edge) => edge.node);
@@ -143,6 +158,7 @@ function Flipbook({ data, pageContext, location }) {
 
   const onSlideChange = (swiper) => {
     const { realIndex } = swiper;
+    console.log('realIndex: ', realIndex);
     setUrlParam('currentSlide', realIndex);
     setCurrentSlide(realIndex);
   };
@@ -159,24 +175,11 @@ function Flipbook({ data, pageContext, location }) {
     </div>
   );
 
-  const titleSlideDefaultData = {
-    attractTitle: 'Title in English',
-    attractSwipeText: 'Swipe up to start',
-    attractVideoClip: '//videos.ctfassets.net/bppzr40ti9rt/60CH9PKdTpbCoZseUJkvuk/fc7957483351c4d2dd1e35b70203cf95/rosie-stretch.mp4',
-  };
-
-  const titleSlideNonDefaultData = {
-    attractTitle: 'Title in English',
-    attractSwipeText: 'Swipe up to start',
-    attractVideoClip: '//videos.ctfassets.net/bppzr40ti9rt/60CH9PKdTpbCoZseUJkvuk/fc7957483351c4d2dd1e35b70203cf95/rosie-stretch.mp4',
-  };
-
   const renderTitleSlide = (slide) => (
     <SwiperSlide key={slide[0].id} className="title-slide">
       <AttractScreen
-        defaultContent={titleSlideDefaultData}
-        nonDefaultContent={titleSlideNonDefaultData}
-        // isActive={isAttractScreenActive}
+        defaultContent={titleSlideDefaultContent}
+        nonDefaultContent={titleSlideNonDefaultContent}
       />
     </SwiperSlide>
   );
@@ -217,8 +220,13 @@ function Flipbook({ data, pageContext, location }) {
                   </div>
                 </div>
               ))}
-              <div className="credit">
-                <p>{slide[0].media.credit}</p>
+              <div className="slide-footer">
+                <div className="credit">
+                  <p>{slide[0].media.credit}</p>
+                </div>
+                <div className="locale-button-container">
+                  {renderLocaleButtons()}
+                </div>
               </div>
             </div>
           </div>
@@ -226,8 +234,8 @@ function Flipbook({ data, pageContext, location }) {
       </SwiperSlide>
     );
   });
-
   return (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {currentSlide !== null
       && (
@@ -247,7 +255,6 @@ function Flipbook({ data, pageContext, location }) {
         {renderSlides}
       </Swiper>
       )}
-      {renderLocaleButtons()}
     </>
   );
 }

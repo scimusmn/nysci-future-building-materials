@@ -29,6 +29,20 @@ exports.createPages = async ({ actions, graphql }) => {
           node {
             slug
             node_locale
+            slides {
+              ... on ContentfulTitleSlide {
+                mainTitle
+                instructionText
+                node_locale
+                 titleSlideVideo {
+                  videoAsset {
+                    localFile {
+                      publicURL
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -52,6 +66,9 @@ exports.createPages = async ({ actions, graphql }) => {
   ];
 
   const locales = allLocales.edges.map(({ node }) => node.code);
+  // clean up slides array to grab only title slide data
+  const slideData = allFlipbooks.edges.map(({ node }) => node.slides).flat();
+  const titleSlideContent = slideData.filter((slide) => slide.mainTitle);
 
   pageTypes.forEach((pageType) => {
     pageType.entries.forEach(({ node }) => {
@@ -64,6 +81,7 @@ exports.createPages = async ({ actions, graphql }) => {
             context: {
               slug: node.slug,
               locales: [locale],
+              titleSlideContent,
             },
             path: `${pageType.slugPrefix + locale}/${node.slug}`,
           });

@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 function AttractScreen({
   defaultContent,
   nonDefaultContent,
-  // isActive,
 }) {
   const defaultTitle = defaultContent.attractTitle;
   const defaultText = defaultContent.attractSwipeText;
@@ -30,8 +29,8 @@ function AttractScreen({
           <source src={videoClipSrc} type="video/mp4" />
         </video>
       <div className="attract-section-1">
-        <div>{defaultTitle}</div>
-        <div>{nonDefaultTitle}</div>
+        <div className="attract-title">{defaultTitle}</div>
+        <div className="attract-title">{nonDefaultTitle}</div>
       </div>
         <div className="attract-section-2">
           <div
@@ -51,7 +50,6 @@ function AttractScreen({
 }
 
 AttractScreen.propTypes = {
-//   isActive: PropTypes.bool.isRequired
   defaultContent: PropTypes.shape({
     attractTitle: PropTypes.string.isRequired,
     attractSwipeText: PropTypes.string.isRequired,
