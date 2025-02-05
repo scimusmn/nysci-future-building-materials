@@ -67,16 +67,18 @@ body {
   grid-row: 2/3;
   height: 200px;
   justify-content: space-evenly;
+  text-transform: lowercase;
 }
 
 .attract-section-2 {
   align-items: center;
   color: var(--color-overlay-text-btn);
   display: flex;
-  font-size: var(--overlay-btn-font-size);
+  font-size: 32px;
   grid-row: 3/4;
   height: 100px;
   justify-content: space-evenly;
+  text-transform: lowercase;
 }
 
 .slide-wrapper {
