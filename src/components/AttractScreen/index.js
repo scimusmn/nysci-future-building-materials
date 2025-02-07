@@ -30,8 +30,8 @@ function AttractScreen({
         </video>
         <div className="attract-swipe-icon" />
       <div className="attract-section-1">
-        <div className="attract-title">{defaultTitle}</div>
-        <div className="attract-title">{nonDefaultTitle}</div>
+        <div className="attract-title first">{defaultTitle}</div>
+        <div className="attract-title second">{nonDefaultTitle}</div>
       </div>
         <div className="attract-section-2">
           <div

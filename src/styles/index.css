@@ -94,13 +94,25 @@ body {
   }
 }
 
-.attract-title {
-  padding: 0 130px;
-  text-align: center;
+.attract-title,
+.attract-text {
+  text-align: left;
 }
 
-.attract-text {
-  text-align: center;
+.attract-title.first {
+  padding: 0 150px;
+}
+
+.attract-title.second {
+  padding: 0 200px 0 70px;
+}
+
+.attract-text.default-locale {
+  padding: 0 150px;
+}
+
+.attract-text.non-default-locale {
+  padding: 0 200px 0 70px;
 }
 
 .attract-section-1 {
@@ -113,7 +125,6 @@ body {
   grid-row: 2/3;
   grid-template-columns: 1fr 1fr;
   height: 200px;
-  justify-content: space-between;
   text-transform: lowercase;
 }
 
