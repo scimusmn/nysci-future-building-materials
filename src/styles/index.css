@@ -289,7 +289,7 @@ body {
   border: none;
   border-top-left-radius: 15px;
   bottom: 0;
-  box-shadow: -2px 0 5px rgb(0 0 0 / 50%);
+  box-shadow: -2px 0 0 rgb(0 0 0 / 30%);
   color: var(--color-secondary);
   cursor: pointer;
   display: flex;
@@ -301,7 +301,6 @@ body {
   right: 0;
   transform-origin: bottom right;
   transition: transform 0.2s ease-out;
-  visibility: visible;
   width: 100px;
   z-index: 1;
 }
