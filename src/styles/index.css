@@ -182,7 +182,7 @@ body {
   letter-spacing: var(--letter-spacing);
 }
 
-.credit {
+.img-info {
   color: var(--color-secondary);
   font-size: 22.5px;
   font-weight: var(--font-regular);
@@ -195,6 +195,18 @@ body {
 .slide-footer {
   display: grid;
   grid-template-columns: 1fr 100px;
+}
+
+.credit {
+  bottom: 30px;
+  color: rgb(255 255 255 / 90%);
+  font-size: 12px;
+  height: 0;
+  left: 15px;
+  padding: 0 5px 5px 10px;
+  position: absolute;
+  text-shadow: 0 0 4px rgb(0 0 0 / 60%);
+  width: 700px;
 }
 
 /* Swiper customization */
@@ -288,6 +300,8 @@ body {
   position: absolute;
   right: 0;
   transform-origin: bottom right;
+  transition: transform 0.2s ease-out;
+  visibility: visible;
   width: 100px;
   z-index: 1;
 }
@@ -305,5 +319,37 @@ body {
   background-image: url("../images/active-language-button.png");
   transform: translate(0) scale(0.95);
   transform-origin: bottom right;
-  transition: transform 0.2s ease-out;
+}
+
+.locale-toggle-button.hidden {
+  animation: fade-out 0.25s ease;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.locale-toggle-button.visible {
+  animation: fade-in 0.5s ease;
+  opacity: 0.85;
+  visibility: visible;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 0.85;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0.85;
+  }
 }
