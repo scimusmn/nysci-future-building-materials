@@ -127,6 +127,8 @@ function Flipbook({ data, pageContext, location }) {
 
   // To sync slide index between locales
   const [currentSlide, setCurrentSlide] = useState(null);
+  const [slideChangeCount, setSlideChangeCount] = useState(0);
+
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     let slideIndex = params.get('currentSlide');
@@ -162,6 +164,13 @@ function Flipbook({ data, pageContext, location }) {
     console.log('realIndex: ', realIndex);
     setUrlParam('currentSlide', realIndex);
     setCurrentSlide(realIndex);
+    setSlideChangeCount((prevCount) => prevCount + 1);
+
+    // Trigger a hard reload after 100 slide changes
+    if (slideChangeCount >= 100) {
+      setSlideChangeCount(0);
+      window.location.reload(true);
+    }
   };
 
   const renderLocaleButtons = () => (
@@ -244,6 +253,7 @@ function Flipbook({ data, pageContext, location }) {
         initialSlide={currentSlide}
         spaceBetween={0}
         slidesPerView={1}
+        loop
         centeredSlides
         navigation
         direction="vertical"
