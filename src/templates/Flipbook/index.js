@@ -30,6 +30,7 @@ export const slideTypes = graphql`
       body {
         raw
       }
+      imageInfo
       media {
         credit
         altText {
@@ -164,7 +165,7 @@ function Flipbook({ data, pageContext, location }) {
   };
 
   const renderLocaleButtons = () => (
-    <div className="locale-toggle-button">
+    <div className={`locale-toggle-button ${currentSlide === 0 ? 'hidden' : 'visible'}`}>
       { buttonLocales && buttonLocales.map((localeInfo) => (
         <Link
           key={localeInfo.code}
@@ -207,27 +208,27 @@ function Flipbook({ data, pageContext, location }) {
                     />
                   )
                 }
+                <span className="credit">{slide[0].media.credit}</span>
               </div>
             )}
             {/* Title and body for each locale */}
             <div className="content-wrapper">
               {slide.map((locale) => (
-                <div className={`${locale.node_locale} text-container`} key={locale.node_locale}>
-                  <h2>{(locale.title && locale.title) || null}</h2>
-                  <div className="separator" />
-                  <div className="body">
-                    {(locale.body && renderRichText(locale.body)) || null}
+                <>
+                  <div className={`${locale.node_locale} text-container`} key={locale.node_locale}>
+                    <h2>{(locale.title && locale.title) || null}</h2>
+                    <div className="separator" />
+                    <div className="body">
+                      {(locale.body && renderRichText(locale.body)) || null}
+                    </div>
                   </div>
-                </div>
+                  <div className="slide-footer">
+                    <div className="img-info">
+                      <p>{locale.imageInfo}</p>
+                    </div>
+                  </div>
+                </>
               ))}
-              <div className="slide-footer">
-                <div className="credit">
-                  <p>{slide[0].media.credit}</p>
-                </div>
-                <div className="locale-button-container">
-                  {renderLocaleButtons()}
-                </div>
-              </div>
             </div>
           </div>
         )}
@@ -253,6 +254,7 @@ function Flipbook({ data, pageContext, location }) {
         className={localeNodes[0].slug}
       >
         {renderSlides}
+        {renderLocaleButtons()}
       </Swiper>
       )}
     </>
