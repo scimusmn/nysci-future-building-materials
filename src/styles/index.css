@@ -31,7 +31,6 @@ body {
   position: absolute;
   top: 0;
   width: 1920px;
-  z-index: 600;
 }
 
 .attract-content {
@@ -41,7 +40,6 @@ body {
   opacity: 1;
   position: relative;
   user-select: none;
-  z-index: 600;
 }
 
 .attract-video-loop {
@@ -49,12 +47,51 @@ body {
   grid-row: 1/2;
   height: 780px;
   object-fit: cover;
+  position: relative;
   width: 100%;
+  z-index: 500;
 }
 
 .attract-video-loop video {
   height: 780px;
+  position: relative;
   width: 100%;
+  z-index: 500;
+}
+
+.attract-swipe-icon {
+  animation: swipe-animation 2.5s infinite;
+  background-image: url("../images/swipe.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  bottom: 40%;
+  height: 155.5px;
+  position: absolute;
+  right: 5%;
+  width: 125px;
+  z-index: 600;
+}
+
+@keyframes swipe-animation {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 0;
+    transform: translateY(-75px);
+  }
+
+  75% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .attract-title {
@@ -185,9 +222,9 @@ body {
 }
 
 .swiper-pagination-bullet {
-  height: 10px !important;
-  margin: 10px 0 !important;
-  width: 10px !important;
+  height: 15px !important;
+  margin: 25px 20px 20px 15px !important;
+  width: 15px !important;
 }
 
 .swiper-pagination .swiper-pagination-bullet {
