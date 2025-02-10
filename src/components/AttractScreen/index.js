@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// import and incorporate LanguageSwitcher component with next task CITY-1954
-
 /* eslint-disable react/jsx-indent */
 /* eslint-disable jsx-a11y/media-has-caption */
 

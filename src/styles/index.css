@@ -209,6 +209,26 @@ body {
   width: 700px;
 }
 
+/* Title slide */
+
+.title-slide {
+  background: var(--color-primary);
+}
+
+.title-slide .en-US,
+.title-slide .es {
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.75px;
+  line-height: 61px;
+  position: absolute;
+  text-align: center;
+  text-transform: lowercase;
+  top: 50%;
+  width: 100%;
+}
+
 /* Swiper customization */
 
 .swiper-container {
@@ -259,27 +279,8 @@ body {
   opacity: 1 !important;
 }
 
-/* Title slide */
+/* Language Toggle Button */
 
-.title-slide {
-  background: var(--color-primary);
-}
-
-.title-slide .en-US,
-.title-slide .es {
-  font-size: 35px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0.75px;
-  line-height: 61px;
-  position: absolute;
-  text-align: center;
-  text-transform: lowercase;
-  top: 50%;
-  width: 100%;
-}
-
-/* Language toggles */
 .locale-toggle-button {
   align-items: center;
   background-color: var(--color-secondary, 80%);
@@ -289,7 +290,7 @@ body {
   border: none;
   border-top-left-radius: 15px;
   bottom: 0;
-  box-shadow: -2px 0 0 rgb(0 0 0 / 30%);
+  box-shadow: -6px 3px 0 0 rgb(0 0 0 / 10%);
   color: var(--color-secondary);
   cursor: pointer;
   display: flex;
@@ -305,7 +306,6 @@ body {
   z-index: 1;
 }
 
-/** switch from one language to the next language image */
 .locale-toggle-button.es {
   background-image: url("../images/default-eng-button.png");
 }

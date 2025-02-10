@@ -119,7 +119,7 @@ function Flipbook({ data, pageContext, location }) {
   const slides = localeNodes[0].slides.map((slide, i) => localeNodes.map((node) => node.slides[i]));
   const localesInfo = data.allContentfulLocale.edges.map((edge) => edge.node);
 
-  // get default locale info
+  // Get default locale info
   const defaultLocale = localesInfo.filter((locale) => locale.default === true);
 
   // Filter out current locale
