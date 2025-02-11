@@ -173,14 +173,31 @@ function Flipbook({ data, pageContext, location }) {
     }
   };
 
+  const handleTouchStart = (event) => {
+    event.currentTarget.classList.add('active');
+  };
+
+  const handleTouchEnd = (event) => {
+    event.currentTarget.classList.remove('active');
+  };
+
   const renderLocaleButtons = () => (
     <div className={`locale-toggle-button ${currentSlide === 0 ? 'hidden' : 'visible'}`}>
       { buttonLocales && buttonLocales.map((localeInfo) => (
-        <Link
+        <button
+          type="button"
           key={localeInfo.code}
-          to={`/${localeInfo.code}/${pageContext.slug}?currentSlide=${currentSlide}`}
-          className={`locale-toggle-button ${localeInfo.code}`}
-        />
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          onTouchCancel={handleTouchEnd}
+          onMouseDown={handleTouchStart}
+          onMouseUp={handleTouchEnd}
+        >
+          <Link
+            to={`/${localeInfo.code}/${pageContext.slug}?currentSlide=${currentSlide}`}
+            className={`locale-toggle-button ${localeInfo.code}`}
+          />
+        </button>
       ))}
     </div>
   );

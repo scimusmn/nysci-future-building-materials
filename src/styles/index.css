@@ -314,7 +314,7 @@ body {
   background-image: url("../images/default-es-button.png");
 }
 
-.locale-toggle-button:active {
+.locale-toggle-button.active {
   background-image: url("../images/active-language-button.png");
   transform: translate(0) scale(0.95);
   transform-origin: bottom right;
