@@ -102,6 +102,7 @@ body {
 .attract-title,
 .attract-text {
   text-align: left;
+  user-select: none;
 }
 
 .attract-title.first {
@@ -141,7 +142,7 @@ body {
   grid-row: 3/4;
   grid-template-columns: 1fr 1fr;
   height: 100px;
-  text-transform: lowercase;
+  text-transform: uppercase;
 }
 
 .slide-wrapper {
@@ -156,6 +157,7 @@ body {
   flex-direction: column;
   height: 1080px;
   justify-content: space-between;
+  user-select: none;
 }
 
 .es.text-container,
