@@ -142,7 +142,6 @@ body {
   grid-row: 3/4;
   grid-template-columns: 1fr 1fr;
   height: 100px;
-  text-transform: uppercase;
 }
 
 .slide-wrapper {

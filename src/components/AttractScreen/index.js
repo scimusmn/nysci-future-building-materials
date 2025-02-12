@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 /* eslint-disable react/jsx-indent */
 /* eslint-disable jsx-a11y/media-has-caption */
 
+const capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+
 function AttractScreen({
   defaultContent,
   nonDefaultContent,
 }) {
   const defaultTitle = defaultContent.attractTitle;
-  const defaultText = defaultContent.attractSwipeText;
+  const defaultText = capitalize(defaultContent.attractSwipeText);
   const videoClipSrc = defaultContent.attractVideoClip;
   const nonDefaultTitle = nonDefaultContent.attractTitle;
   const nonDefaultText = nonDefaultContent.attractSwipeText;
