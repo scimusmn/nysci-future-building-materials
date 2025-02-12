@@ -173,28 +173,8 @@ function Flipbook({ data, pageContext, location }) {
     }
   };
 
-  const handleLocaleClick = (event) => {
-    event.preventDefault();
-    const element = event.currentTarget;
-    console.log('element: ', element);
-
-    element.classList.add('active');
-
-    /** Ensure on touch screen the active class is
-     * removed after animation completes so it
-     * doesn't get stuck */
-    const removeClass = () => {
-      element.classList.remove('active');
-      element.removeEventListener('animationend', removeClass);
-      element.removeEventListener('transitionend', removeClass);
-    };
-
-    element.addEventListener('animationend', removeClass);
-    element.addEventListener('transitionend', removeClass);
-  };
-
   const renderLocaleButtons = () => (
-    <button type="button" className={`locale-toggle-button ${currentSlide === 0 ? 'hidden' : 'visible'}`} onClick={handleLocaleClick}>
+    <button type="button" className={`locale-toggle-button ${currentSlide === 0 ? 'hidden' : 'visible'}`}>
       { buttonLocales && buttonLocales.map((localeInfo) => (
         <Link
           key={localeInfo.code}
