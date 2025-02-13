@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { graphql, Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-import { renderRichText } from 'gatsby-source-contentful/rich-text';
 import SwiperCore, { Pagination, Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useIdleTimer } from 'react-idle-timer';
 import Video from '../../components/Video';
 import AttractScreen from '../../components/AttractScreen';
+import SlideContent from '../../components/SlideContent';
 
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
@@ -220,23 +220,9 @@ function Flipbook({ data, pageContext, location }) {
                 <span className="credit">{slide[0].media.credit}</span>
               </div>
             )}
-            {/* Title and body for each locale */}
             <div className="content-wrapper">
               {slide.map((locale) => (
-                <>
-                  <div className={`${locale.node_locale} text-container`} key={locale.node_locale}>
-                    <h2>{(locale.title && locale.title) || null}</h2>
-                    <div className="separator" />
-                    <div className="body">
-                      {(locale.body && renderRichText(locale.body)) || null}
-                    </div>
-                  </div>
-                  <div className="slide-footer">
-                    <div className="img-info">
-                      <p>{locale.imageInfo}</p>
-                    </div>
-                  </div>
-                </>
+                <SlideContent locale={locale} />
               ))}
             </div>
           </div>

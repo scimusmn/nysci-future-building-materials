@@ -5,6 +5,7 @@
   "version": "1.0.0",
   "author": "@scimusmn",
   "dependencies": {
+    "@contentful/rich-text-plain-text-renderer": "^17.0.0",
     "dotenv": "^8.2.0",
     "gatsby": "^4.2.0",
     "gatsby-plugin-image": "^2.2.0",
