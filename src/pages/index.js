@@ -20,14 +20,17 @@ function IndexPage() {
 
   const { allSitePage } = data;
 
+  const allSitePages = allSitePage.edges.filter((edge) => edge.node.path !== '/future-building-materials');
+  console.log(allSitePages);
+
   return (
     <div className="links-container">
       <h1>Flipbooks</h1>
       <ul>
-        {allSitePage.edges.map((edge) => (
-          <li key={edge.node.path}>
-            <Link to={edge.node.path} key={edge.node.path}>
-              {edge.node.path}
+        {allSitePages.map(({ node }) => (
+          <li key={node.path}>
+            <Link to={node.path} key={node.path}>
+              {node.path}
             </Link>
           </li>
         ))}
