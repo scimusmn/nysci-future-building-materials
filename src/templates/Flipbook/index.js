@@ -142,7 +142,10 @@ function Flipbook({ data, pageContext, location }) {
     timeout: inactivityTimeout * 1000,
     debounce: 500,
     startOnMount: false,
-    onIdle: () => window.location.replace(`${window.origin}/${defaultLocale[0].code}/${pageContext.slug}?currentSlide=0`),
+    onIdle: () => {
+      window.location.replace(`${window.origin}/${defaultLocale[0].code}/${pageContext.slug}?currentSlide=0`);
+      window.location.reload();
+    },
   });
 
   const getAltText = (altObj) => {
@@ -167,9 +170,10 @@ function Flipbook({ data, pageContext, location }) {
     setSlideChangeCount((prevCount) => prevCount + 1);
 
     // Trigger a hard reload after 100 slide changes
-    if (slideChangeCount >= 100) {
+    if (slideChangeCount >= 3) {
       setSlideChangeCount(0);
-      window.location.reload(true);
+      window.location.replace(`${window.origin}/${defaultLocale[0].code}/${pageContext.slug}?currentSlide=${realIndex}`);
+      window.location.reload();
     }
   };
 
