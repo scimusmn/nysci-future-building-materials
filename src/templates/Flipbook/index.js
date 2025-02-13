@@ -144,7 +144,6 @@ function Flipbook({ data, pageContext, location }) {
     startOnMount: false,
     onIdle: () => {
       window.location.replace(`${window.origin}/${defaultLocale[0].code}/${pageContext.slug}?currentSlide=0`);
-      window.location.reload();
     },
   });
 

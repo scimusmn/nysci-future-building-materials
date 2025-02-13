@@ -10,9 +10,8 @@ function Video({ src, active }) {
     if (active) {
       video.currentTime = 0;
       video.play().catch((error) => {
-        if (error.name === 'AbortError') {
-          console.error('Video play was interrupted:', error);
-          // Handle the error, e.g., reset the page
+        if (error) {
+          console.error('Video play was interrupted:', error.name);
           window.location.reload();
         }
       });
