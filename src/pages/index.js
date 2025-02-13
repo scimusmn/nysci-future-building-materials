@@ -21,7 +21,6 @@ function IndexPage() {
   const { allSitePage } = data;
 
   const allSitePages = allSitePage.edges.filter((edge) => edge.node.path !== '/future-building-materials');
-  console.log(allSitePages);
 
   return (
     <div className="links-container">
