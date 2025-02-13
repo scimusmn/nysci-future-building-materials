@@ -170,7 +170,7 @@ function Flipbook({ data, pageContext, location }) {
     setSlideChangeCount((prevCount) => prevCount + 1);
 
     // Trigger a hard reload after 100 slide changes
-    if (slideChangeCount >= 3) {
+    if (slideChangeCount >= 100) {
       setSlideChangeCount(0);
       window.location.replace(`${window.origin}/${defaultLocale[0].code}/${pageContext.slug}?currentSlide=${realIndex}`);
       window.location.reload();
@@ -221,7 +221,7 @@ function Flipbook({ data, pageContext, location }) {
                     />
                   )
                 }
-                <span className="credit">{slide[0].media.credit}</span>
+                <span className="credit" key={slide[0].id}>{slide[0].media.credit}</span>
               </div>
             )}
             {/* Title and body for each locale */}
