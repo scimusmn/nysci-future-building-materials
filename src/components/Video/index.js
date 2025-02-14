@@ -8,15 +8,15 @@ function Video({ src, active, resetIdleTimer }) {
     const video = vidRef.current;
 
     if (active) {
+      resetIdleTimer();
       video.currentTime = 0;
-      try {
-        resetIdleTimer();
-        video.play();
-      } catch (error) {
-        /* eslint-disable no-console */
-        console.error('Video play was interrupted:', error.name);
-        window.location.reload();
-      }
+      video.play().catch((error) => {
+        if (error) {
+          console.error('Video play was interrupted:', error);
+          // Handle the error, e.g., reset the page
+          window.location.reload();
+        }
+      });
     } else {
       video.pause();
     }
