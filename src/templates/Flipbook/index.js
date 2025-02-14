@@ -138,7 +138,7 @@ function Flipbook({ data, pageContext, location }) {
 
   // Inactivity timeout
   const { inactivityTimeout } = localeNodes[0];
-  useIdleTimer({
+  const { reset } = useIdleTimer({
     timeout: inactivityTimeout * 1000,
     debounce: 500,
     startOnMount: false,
@@ -210,7 +210,7 @@ function Flipbook({ data, pageContext, location }) {
               <div>
                 {
                 (slide[0].media.media.file.contentType).includes('video')
-                  ? <Video id="media" src={slide[0].media.media.localFile.publicURL} active={isActive} />
+                  ? <Video id="media" src={slide[0].media.media.localFile.publicURL} active={isActive} resetIdleTimer={reset} />
                   : (
                     <GatsbyImage
                       id="media"
