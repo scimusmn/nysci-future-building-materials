@@ -1,15 +1,24 @@
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-function Video({ src, active }) {
+function Video({ src, active, resetIdleTimer }) {
   const vidRef = useRef(null);
 
   useEffect(() => {
+    const video = vidRef.current;
+
     if (active) {
-      vidRef.current.currentTime = 0;
-      vidRef.current.play();
+      resetIdleTimer();
+      video.currentTime = 0;
+      video.play().catch((error) => {
+        if (error) {
+          console.error('Video play was interrupted:', error);
+          // Handle the error, e.g., reset the page
+          window.location.reload();
+        }
+      });
     } else {
-      vidRef.current.pause();
+      video.pause();
     }
   }, [active]);
 
@@ -30,6 +39,7 @@ function Video({ src, active }) {
 Video.propTypes = {
   src: PropTypes.string.isRequired,
   active: PropTypes.bool.isRequired,
+  resetIdleTimer: PropTypes.func.isRequired,
 };
 
 export default Video;

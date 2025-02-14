@@ -138,11 +138,13 @@ function Flipbook({ data, pageContext, location }) {
 
   // Inactivity timeout
   const { inactivityTimeout } = localeNodes[0];
-  useIdleTimer({
+  const { reset } = useIdleTimer({
     timeout: inactivityTimeout * 1000,
     debounce: 500,
     startOnMount: false,
-    onIdle: () => window.location.replace(`${window.origin}/${defaultLocale[0].code}/${pageContext.slug}?currentSlide=0`),
+    onIdle: () => {
+      window.location.replace(`${window.origin}/${defaultLocale[0].code}/${pageContext.slug}?currentSlide=0`);
+    },
   });
 
   const getAltText = (altObj) => {
@@ -169,7 +171,8 @@ function Flipbook({ data, pageContext, location }) {
     // Trigger a hard reload after 100 slide changes
     if (slideChangeCount >= 100) {
       setSlideChangeCount(0);
-      window.location.reload(true);
+      window.location.replace(`${window.origin}/${defaultLocale[0].code}/${pageContext.slug}?currentSlide=${realIndex}`);
+      window.location.reload();
     }
   };
 
@@ -207,7 +210,7 @@ function Flipbook({ data, pageContext, location }) {
               <div>
                 {
                 (slide[0].media.media.file.contentType).includes('video')
-                  ? <Video id="media" src={slide[0].media.media.localFile.publicURL} active={isActive} />
+                  ? <Video id="media" src={slide[0].media.media.localFile.publicURL} active={isActive} resetIdleTimer={reset} />
                   : (
                     <GatsbyImage
                       id="media"
@@ -217,7 +220,7 @@ function Flipbook({ data, pageContext, location }) {
                     />
                   )
                 }
-                <span className="credit">{slide[0].media.credit}</span>
+                <span className="credit" key={slide[0].id}>{slide[0].media.credit}</span>
               </div>
             )}
             <div className="content-wrapper">
