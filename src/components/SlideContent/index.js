@@ -1,21 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { renderRichText } from 'gatsby-source-contentful/rich-text';
 import PropTypes from 'prop-types';
 
 /* eslint-disable react/jsx-indent */
 /* eslint-disable camelcase */
 
-// const preventWidow = (body) => {
-//   // Convert the rich text document to plain text
-//   const text = renderRichText(body);
-
-//   // Return an empty string if the input is falsy or if it's just whitespace
-//   if (!text || !text.trim()) return '';
-
-//   const words = text.trim().split(' ');
-//   if (words.length < 2) return text;
-
-//   return `${words.slice(0, -1).join(' ')}\u00A0${words.slice(-1)}`;
+// const usePreventWidow = () => {
+//   useEffect(() => {
+//     document.querySelectorAll('.body').forEach((paragraph) => {
+//       const words = paragraph.innerHTML.split(' ');
+//       console.log('words', words);
+//       if (words.length > 1) {
+//         const lastWord = words.pop();
+//         const secondToLastWord = words.pop();
+//         const joinedLastTwoWords = `${secondToLastWord}\u00A0${lastWord}`;
+//         /* eslint-disable no-param-reassign */
+//         paragraph.innerHTML = `${words.join(' ')} ${joinedLastTwoWords}`;
+//       }
+//     });
+//   }, []);
 // };
 
 function SlideContent({ locale }) {
@@ -26,9 +29,62 @@ function SlideContent({ locale }) {
     imageInfo,
   } = locale;
 
+  useEffect(() => {
+    console.log('locale', locale);
+  }, [locale]);
+
+  /* eslint-disable no-param-reassign */
+  /* eslint-disable no-plusplus */
+  useEffect(() => {
+    document.querySelectorAll('.body').forEach((paragraph) => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(paragraph.innerHTML, 'text/html');
+      const textNodes = [];
+
+      // Extract text nodes
+      const extractTextNodes = (node) => {
+        node.childNodes.forEach((child) => {
+          if (child.nodeType === Node.TEXT_NODE) {
+            textNodes.push(child);
+          } else {
+            extractTextNodes(child);
+          }
+        });
+      };
+
+      extractTextNodes(doc.body);
+
+      // Combine text content
+      const words = textNodes.map((node) => node.textContent).join(' ').split(' ');
+
+      if (words.length > 1) {
+        const lastWord = words.pop();
+
+        // Update text nodes
+        let wordIndex = 0;
+        textNodes.forEach((node) => {
+          const nodeWords = node.textContent.split(' ');
+          const newText = nodeWords.map((word) => {
+            if (wordIndex === words.length - 1) {
+              /* eslint-disable no-plusplus */
+              wordIndex++;
+              return `${word}\u00A0${lastWord}`;
+            }
+            return words[wordIndex++];
+          }).join(' ');
+
+          node.textContent = newText;
+        });
+
+        // Set the updated HTML back to the paragraph
+        paragraph.innerHTML = doc.body.innerHTML;
+      }
+    });
+  }, [locale]);
+
   return (
     <>
-        <div className={`${node_locale} text-container`} key={node_locale}>
+        <div key={node_locale} className={`${node_locale} text-container`}>
 
           <h2>{({ title } && title) || null}</h2>
           <div className="separator" />
