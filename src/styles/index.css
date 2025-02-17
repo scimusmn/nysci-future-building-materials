@@ -251,7 +251,7 @@ body {
 }
 
 #media-video {
-  animation: fade-in 0.5s ease;
+  animation: fade-in 1s ease;
   opacity: 1;
   width: 776px;
 }
@@ -330,10 +330,8 @@ body {
 }
 
 .locale-toggle-button.hidden {
-  animation: fade-out 0.25s ease;
-  opacity: 0;
+  animation: fade-out 0.25s ease forwards;
   pointer-events: none;
-  visibility: hidden;
 }
 
 .locale-toggle-button.visible {
@@ -349,12 +347,14 @@ body {
 
   100% {
     opacity: 0;
+    visibility: hidden;
   }
 }
 
 @keyframes fade-in {
   0% {
     opacity: 0;
+    visibility: hidden;
   }
 
   100% {
