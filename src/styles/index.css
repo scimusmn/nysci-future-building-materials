@@ -153,6 +153,7 @@ body {
 /** Content - Right side of slide */
 
 .content-wrapper {
+  animation: fade-in 0.25s ease;
   display: flex;
   flex-direction: column;
   height: 1080px;
@@ -250,6 +251,7 @@ body {
 }
 
 #media-video {
+  animation: fade-in 0.5s ease;
   opacity: 1;
   width: 776px;
 }
