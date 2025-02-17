@@ -45,7 +45,7 @@ export const slideTypes = graphql`
             publicURL
             childImageSharp {
               gatsbyImageData(
-                width: 950
+                width: 776
                 height: 1080
                 layout: FIXED
                 placeholder: BLURRED
