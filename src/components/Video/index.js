@@ -12,8 +12,8 @@ function Video({ src, active, resetIdleTimer }) {
       video.currentTime = 0;
       video.play().catch((error) => {
         if (error) {
+          /* eslint-disable no-console */
           console.error('Video play was interrupted:', error);
-          // Handle the error, e.g., reset the page
           window.location.reload();
         }
       });

@@ -66,8 +66,8 @@ SlideContent.propTypes = {
     title: PropTypes.string.isRequired,
     node_locale: PropTypes.string.isRequired,
     body: PropTypes.shape({
-      raw: PropTypes.objectOf.isRequired,
-    }),
+      raw: PropTypes.string.isRequired,
+    }).isRequired,
     imageInfo: PropTypes.string.isRequired,
   }).isRequired,
 };
