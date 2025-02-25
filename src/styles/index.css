@@ -206,12 +206,12 @@ body {
 }
 
 .credit {
-  bottom: 30px;
+  bottom: 15px;
   color: rgb(255 255 255 / 90%);
   font-size: 12px;
   height: 0;
-  left: 15px;
-  padding: 0 5px 5px 10px;
+  left: 5px;
+  padding: 0 5px 5px;
   position: absolute;
   text-shadow: 0 0 4px rgb(0 0 0 / 60%);
   width: 700px;
