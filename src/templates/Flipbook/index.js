@@ -100,19 +100,19 @@ function Flipbook({ data, pageContext, location }) {
   const localeNodes = data.allContentfulFlipbook.edges.map((edge) => edge.node);
 
   const { titleSlideContent } = pageContext;
-  const titleSlideDefaultData = titleSlideContent.filter((slide) => slide.node_locale === 'en-US');
-  const titleSlideNonDefaultData = titleSlideContent.filter((slide) => slide.node_locale === 'es');
+  const titleSlideDefaultData = titleSlideContent?.filter((slide) => slide.node_locale === 'en-US');
+  const titleSlideNonDefaultData = titleSlideContent?.filter((slide) => slide.node_locale === 'es');
 
   const titleSlideDefaultContent = {
-    attractTitle: titleSlideDefaultData[0].mainTitle,
-    attractSwipeText: titleSlideDefaultData[0].instructionText,
-    attractVideoClip: titleSlideDefaultData[0].titleSlideVideo.videoAsset.localFile.publicURL,
+    attractTitle: titleSlideDefaultData?.[0]?.mainTitle,
+    attractSwipeText: titleSlideDefaultData?.[0]?.instructionText,
+    attractVideoClip: titleSlideDefaultData?.[0]?.titleSlideVideo.videoAsset.localFile.publicURL,
   };
 
   const titleSlideNonDefaultContent = {
-    attractTitle: titleSlideNonDefaultData[0].mainTitle,
-    attractSwipeText: titleSlideNonDefaultData[0].instructionText,
-    attractVideoClip: titleSlideNonDefaultData[0].titleSlideVideo.videoAsset.localFile.publicURL,
+    attractTitle: titleSlideNonDefaultData?.[0].mainTitle,
+    attractSwipeText: titleSlideNonDefaultData?.[0].instructionText,
+    attractVideoClip: titleSlideNonDefaultData?.[0].titleSlideVideo.videoAsset.localFile.publicURL,
   };
 
   // Array of multi-locale slides
