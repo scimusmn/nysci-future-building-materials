@@ -30,7 +30,9 @@ export const slideTypes = graphql`
       body {
         raw
       }
-      imageInfo
+      imageInfo {
+          imageInfo
+      }
       media {
         credit
         altText {

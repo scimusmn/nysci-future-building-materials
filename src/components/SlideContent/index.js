@@ -54,7 +54,7 @@ function SlideContent({ locale }) {
         </div>
           <div className="slide-footer">
             <div className="img-info">
-                <p>{ imageInfo }</p>
+                <p>{ imageInfo.imageInfo }</p>
             </div>
           </div>
     </>
